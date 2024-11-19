@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll bar */
         }
         .navbar {
             background-color: #2c3e50;
@@ -26,7 +27,7 @@
         .container {
             max-width: 900px;
             margin-top: 30px;
-            flex: 1; /* Allows the content to grow while pushing the footer to the bottom */
+            flex: 1;
         }
         .hero {
             background: linear-gradient(135deg, #2980b9, #6dd5fa);
@@ -48,7 +49,7 @@
             border: none;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: 100%; /* Ensures all cards have the same height */
+            height: 100%;
         }
         .card-body {
             padding: 30px;
@@ -81,14 +82,36 @@
             background-color: #2c3e50;
             color: #ecf0f1;
             text-align: center;
-            padding: 20px;
+            padding: 20px 10px;
+            font-size: 14px;
+            position: relative;
+            border-top: 3px solid #f39c12;
         }
-        .footer a {
+        .footer-content a {
             color: #ecf0f1;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
-        .footer a:hover {
+        .footer-content a:hover {
             color: #f39c12;
+        }
+        .footer-creator {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #7f8c8d;
+        }
+        .footer-creator p {
+            margin: 0;
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+        .footer-creator h5 {
+            margin: 5px 0;
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 18px;
+            text-transform: uppercase;
         }
         @media (max-width: 768px) {
             .hero h1 {
@@ -104,7 +127,6 @@
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <a class="navbar-brand" href="/">Evaluation Portal</a>
@@ -129,7 +151,6 @@
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <!-- Card for Add New Student -->
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
@@ -139,8 +160,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Card for Search Students -->
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
@@ -150,8 +169,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Card for List of Students -->
             <div class="col-md-4 d-flex align-items-stretch">
                 <div class="card">
                     <div class="card-body">
@@ -166,13 +183,21 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 Evaluation Portal. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <div class="footer-content">
+            <p>&copy; 2024 Evaluation Portal. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </p>
+            <div class="footer-creator">
+                <p>Created By</p>
+                <h5>Jalp Panchal</h5>
+            </div>
+        </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript for Date and Day -->
+    <!-- JavaScript for Date -->
     <script>
         function formatDate(date) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

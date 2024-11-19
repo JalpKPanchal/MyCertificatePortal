@@ -24,14 +24,12 @@
 function makePDF() {
     const { jsPDF } = window.jspdf;  // Destructure jsPDF from the global window object
 
-    // Select elements to hide during export
-    const footer = document.querySelector('.footer');
+    // Select elements to hide during export (if needed)
     const exportButton = document.querySelector('button');
 
-    // Hide the footer and button
-    footer.style.display = 'none';
+    // Temporarily hide the button
     exportButton.style.display = 'none';
-	
+    
     const captureElement = document.getElementById('capture');
     html2canvas(captureElement, {
         scale: 2, // High-resolution capture
@@ -47,14 +45,12 @@ function makePDF() {
         pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
         pdf.save('Student_Report.pdf');
 
-        // Restore the visibility of the footer and button
-        footer.style.display = 'block';
+        // Restore the visibility of the button
         exportButton.style.display = 'inline-block';
     }).catch(error => {
         console.error('Error generating PDF:', error);
 
         // Restore the visibility in case of error
-        footer.style.display = 'block';
         exportButton.style.display = 'inline-block';
     });
 }
@@ -274,9 +270,13 @@ function makePDF() {
         <button class="btn btn-primary mt-3" onclick="makePDF()">Export Full Report as PDF</button>
         
         <!-- Footer -->
-        <footer class="footer">
-            <p>&copy; 2024 Evaluation Portal. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-        </footer>
+       <footer class="footer">
+    <p>&copy; 2024 Evaluation Portal. All rights reserved. 
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+    </p>
+    <p>&copy; Created By Jalp Panchal</p>
+</footer>
+
     </div>
 
     <script>
