@@ -187,6 +187,8 @@
         <div class="action-buttons">
             <a href="search" class="btn btn-info btn-sm">Search Student</a>
             <a href="newstudent" class="btn btn-success btn-sm">Add Student</a>
+            	<a href="exportpdf">Export PDF</a>
+            
         </div>
 
         <!-- Table with Horizontal Scroll -->
@@ -228,7 +230,6 @@
             </table>
         </div>
     </div>
-
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 Evaluation Portal. All rights reserved.</p>

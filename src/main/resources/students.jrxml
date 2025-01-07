@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+    name="StudentDashboard" pageWidth="595" pageHeight="842" columnWidth="555"
+    leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12345-67890-abcdef">
+    
+    <!-- Fonts and styles -->
+    <style name="headerStyle" fontName="Arial" fontSize="16" isBold="true" forecolor="#5F5FFF" />
+    <style name="subHeaderStyle" fontName="Arial" fontSize="14" isBold="true" forecolor="#333333" />
+    <style name="tableHeaderStyle" fontName="Arial" fontSize="12" isBold="true" forecolor="#FFFFFF" backcolor="#5F5FFF" />
+    <style name="tableCellStyle" fontName="Arial" fontSize="10" forecolor="#333333" />
+    <style name="footerStyle" fontName="Arial" fontSize="10" isItalic="true" forecolor="#666666" textAlignment="Center" />
+    
+    <!-- Title -->
+    <title>
+        <band height="50">
+            <textField style="headerStyle" isStretchWithOverflow="true">
+                <reportElement x="0" y="0" width="555" height="30" uuid="titleField" />
+                <textFieldExpression><![CDATA["Student Dashboard"]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <!-- Page Header -->
+    <pageHeader>
+        <band height="30">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="30" uuid="headerBackground" />
+                <box>
+                    <pen lineWidth="1.0" lineStyle="Solid" />
+                    <topPen lineColor="#5F5FFF" />
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="12" isBold="true" />
+                </textElement>
+                <text><![CDATA[Student Evaluation Report]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+
+    <!-- Detail Section -->
+    <detail>
+        <band height="600">
+            <!-- Profile Section -->
+            <staticText style="subHeaderStyle">
+                <reportElement x="0" y="0" width="555" height="20" uuid="profileHeader" />
+                <text><![CDATA[Student Information]]></text>
+            </staticText>
+
+            <line>
+                <reportElement x="0" y="25" width="555" height="1" uuid="profileLine" />
+                <graphicElement>
+                    <pen lineWidth="0.5" lineStyle="Solid" />
+                </graphicElement>
+            </line>
+
+            <frame>
+                <reportElement x="0" y="30" width="555" height="100" uuid="profileFrame" />
+                <band height="100">
+                    <table>
+                        <row>
+                            <column width="100">
+                                <staticText style="tableHeaderStyle">
+                                    <text><![CDATA[First Name]]></text>
+                                </staticText>
+                            </column>
+                            <column width="180">
+                                <textField style="tableCellStyle">
+                                    <textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression>
+                                </textField>
+                            </column>
+                            <column width="100">
+                                <staticText style="tableHeaderStyle">
+                                    <text><![CDATA[Last Name]]></text>
+                                </staticText>
+                            </column>
+                            <column width="180">
+                                <textField style="tableCellStyle">
+                                    <textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression>
+                                </textField>
+                            </column>
+                        </row>
+                        <row>
+                            <column width="100">
+                                <staticText style="tableHeaderStyle">
+                                    <text><![CDATA[Email]]></text>
+                                </staticText>
+                            </column>
+                            <column width="180">
+                                <textField style="tableCellStyle">
+                                    <textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+                                </textField>
+                            </column>
+                            <column width="100">
+                                <staticText style="tableHeaderStyle">
+                                    <text><![CDATA[Mobile]]></text>
+                                </staticText>
+                            </column>
+                            <column width="180">
+                                <textField style="tableCellStyle">
+                                    <textFieldExpression><![CDATA[$F{mobile}]]></textFieldExpression>
+                                </textField>
+                            </column>
+                        </row>
+                    </table>
+                </band>
+            </frame>
+
+            <!-- Grading Section -->
+            <staticText style="subHeaderStyle">
+                <reportElement x="0" y="150" width="555" height="20" uuid="gradingHeader" />
+                <text><![CDATA[Grading Scale]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="0" y="180" width="555" height="20" uuid="gradingScale" />
+                <textFieldExpression><![CDATA["A+: 91-100 | A: 81-90 | B+: 71-80 | B: 61-70 | C+: 51-60 | C: 41-50 | D: Below 41"]]></textFieldExpression>
+            </textField>
+
+            <!-- Final Score -->
+            <staticText style="subHeaderStyle">
+                <reportElement x="0" y="210" width="555" height="20" uuid="finalScoreHeader" />
+                <text><![CDATA[Final Score]]></text>
+            </staticText>
+            <textField style="tableCellStyle">
+                <reportElement x="0" y="240" width="555" height="20" uuid="finalScoreText" />
+                <textFieldExpression><![CDATA[$F{averageScore} + " %" + " | Grade: " + $F{grade}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- Page Footer -->
+    <pageFooter>
+        <band height="20">
+            <staticText style="footerStyle">
+                <reportElement x="0" y="0" width="555" height="20" uuid="footerText" />
+                <text><![CDATA[© 2024 Evaluation Portal. Created by Jalp Panchal.]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>

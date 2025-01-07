@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,53 +9,15 @@
     <title>Responsive Student Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- AOS CSS (for scroll animations) -->
+   
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!-- jsPDF and html2canvas Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<!-- jsPDF CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-	   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script> <!-- jsPDF -->
-	   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+
    
-<script>
-function makePDF() {
-    const { jsPDF } = window.jspdf;  // Destructure jsPDF from the global window object
 
-    // Select elements to hide during export (if needed)
-    const exportButton = document.querySelector('button');
-
-    // Temporarily hide the button
-    exportButton.style.display = 'none';
-    
-    const captureElement = document.getElementById('capture');
-    html2canvas(captureElement, {
-        scale: 2, // High-resolution capture
-        useCORS: true
-    }).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const pageWidth = pdf.internal.pageSize.getWidth();
-        const pageHeight = pdf.internal.pageSize.getHeight();
-        const imgWidth = pageWidth;
-        const imgHeight = (canvas.height * pageWidth) / canvas.width;
-
-        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-        pdf.save('Student_Report.pdf');
-
-        // Restore the visibility of the button
-        exportButton.style.display = 'inline-block';
-    }).catch(error => {
-        console.error('Error generating PDF:', error);
-
-        // Restore the visibility in case of error
-        exportButton.style.display = 'inline-block';
-    });
-}
-</script>
     
 
        
@@ -190,6 +153,32 @@ function makePDF() {
         .footer a:hover {
             text-decoration: underline;
         }
+        /* Styling the Export button */
+.export-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #28a745; /* Green color */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.export-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
+}
+
+.export-btn:active {
+    background-color: #1e7e34; /* Even darker green on click */
+    transform: scale(0.98); /* Slightly shrinks the button on click */
+}
+        
     </style>
 </head>
 
@@ -267,7 +256,11 @@ function makePDF() {
             <p>A+: 91-100 | A: 81-90 | B+: 71-80 | B: 61-70 | C+: 51-60 | C: 41-50 | D: Below 41</p>
         </div>
         <!-- Export PDF Button -->
-        <button class="btn btn-primary mt-3" onclick="makePDF()">Export Full Report as PDF</button>
+       <!--   <form action="/generatePDF" method="post">
+        <input type="hidden" name="studentId" value="${student.studentId}" />
+        <button class="export-btn" type="submit">Export as PDF</button>
+    </form>-->
+     <a href="exportpdf" class="export-btn">PDF</a>
         
         <!-- Footer -->
        <footer class="footer">
